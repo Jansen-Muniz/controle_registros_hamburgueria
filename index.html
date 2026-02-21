@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Vendas - Hamburgueria</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <img src="./assets/img/hamburgueria-img.jpg" alt="logo">
+    <h1>Registro de Vendas</h1>
+    <div class="input-group">
+      <label>Data</label>
+      <input type="date" id="data">
+    </div>
+
+    <div class="input-group">
+      <label>PIX</label>
+      <input type="text" id="pix" placeholder="R$ 0,00">
+    </div>
+
+    <div class="input-group">
+      <label>ESPÉCIE</label>
+      <input type="text" id="especie" placeholder="R$ 0,00">
+    </div>
+
+    <div class="input-group">
+      <label>CARTÃO</label>
+      <input type="text" id="cartao" placeholder="R$ 0,00">
+    </div>
+
+    <button onclick="enviarRegistro()">Registrar</button>
+
+    <div class="mensagem" id="mensagem">
+      Registro enviado com sucesso!
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+
+</body>
+
+</html>
