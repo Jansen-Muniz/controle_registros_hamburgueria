@@ -11,7 +11,7 @@ function enviarRegistro() {
     data: data
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbxX7GP0vs0wTaSUc6C8UgXxcANUPLNyyJfRGJvNj-bNPOG6GQYZ22MLJTO2z8mt-DYvZg/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzZB1Xqp-I5HOGkD5LOVQcKD2kdsEuSDQ-4l0p0IzDxqR-_yzRdJcDOgX8y7-gbcW8cDg/exec", {
     method: "POST",
     body: JSON.stringify(dados)
   })
