@@ -4,10 +4,19 @@ function enviarRegistro() {
   const cartao = document.getElementById("cartao").value.trim();
   const data = document.getElementById("data").value.trim();
 
+  // 🔥 Função para limpar moeda (REMOVE R$, pontos e ajusta vírgula)
+  function limparMoeda(valor) {
+    return valor
+      .replace("R$", "")
+      .replace(/\./g, "")   // remove pontos de milhar
+      .replace(",", ".")    // troca vírgula por ponto
+      .trim();
+  }
+
   const dados = {
-    pix: pix,
-    especie: especie,
-    cartao: cartao,
+    pix: limparMoeda(pix),
+    especie: limparMoeda(especie),
+    cartao: limparMoeda(cartao),
     data: data
   };
 
@@ -15,19 +24,21 @@ function enviarRegistro() {
     method: "POST",
     body: JSON.stringify(dados)
   })
+    .then(response => response.json())
     .then(data => {
       console.log("Resposta:", data);
+
       const mensagem = document.getElementById("mensagem");
-      mensagem.style.opacity = "1";   // garante que apareça
+      mensagem.style.opacity = "1";
       mensagem.style.display = "block";
 
-      // Faz a mensagem sumir suavemente após 3 segundos
+      // Fade-out após 3s
       setTimeout(() => {
-        mensagem.style.transition = "opacity 1s ease"; // define transição
-        mensagem.style.opacity = "0";                  // inicia fade-out
+        mensagem.style.transition = "opacity 1s ease";
+        mensagem.style.opacity = "0";
         setTimeout(() => {
-          mensagem.style.display = "none";             // esconde de vez
-        }, 1000); // espera o fade-out terminar
+          mensagem.style.display = "none";
+        }, 1000);
       }, 3000);
 
       // Limpa os campos
@@ -39,12 +50,13 @@ function enviarRegistro() {
     .catch(error => console.error("Erro:", error));
 }
 
-// Função para formatar moeda brasileira
+
+// 💰 Formatação visual (continua igual)
 function formatarMoeda(valor) {
-  valor = valor.replace(/\D/g, ""); // remove tudo que não for número
-  valor = (valor / 100).toFixed(2) + ""; // divide por 100 e fixa 2 casas
-  valor = valor.replace(".", ","); // troca ponto por vírgula
-  valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // adiciona pontos
+  valor = valor.replace(/\D/g, "");
+  valor = (valor / 100).toFixed(2) + "";
+  valor = valor.replace(".", ",");
+  valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return "R$ " + valor;
 }
 
@@ -55,4 +67,3 @@ function formatarMoeda(valor) {
     this.value = formatarMoeda(this.value);
   });
 });
-
